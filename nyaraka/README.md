@@ -7,8 +7,7 @@ Nyaraka is a library design to build a documentation from annotation, it is simi
 The nyaraka repository is divided in 4 parts:
 - Core: The entry point of the core of nyaraka is the class `org.nyaraka.jaxrs.DocumentationBuilder`.
 - Nyaraka-maven-plugin: This a plugin that can be use in java projects in order to build documentation with Maven and Nyaraka.
-- test: The test of the library without maven. It contains also Nyaraka utilisation examples and extensions utilisation example.
-- UI: The nyaraka's UI. 
+- Nyaraka-UI: The UI.
 
 ## Nyaraka-maven-plugin example
 Configuration for server-auth:
