@@ -1,0 +1,9 @@
+<div class="model">
+    <a href="" ng-click="toggleExample()" ng-if="example" class="example-link">JSON example</a>
+    <div ng-show="showExample" class="example">
+        <pre ng-bind-html="example"></pre>
+    </div>
+    <div ng-include="'model.tpl'">
+
+    </div>
+</div>

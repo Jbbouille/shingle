@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nyaraka UI</title>
+
+    <link rel="stylesheet" href="nyaraka.css">
+
+    <script type="text/javascript" src="nyaraka.js"></script>
+</head>
+
+<body ng-app="nyaraka" ng-controller="NyarakaController">
+
+<div class="loader" ng-if="busy">
+    <img src="images/ripple.gif" alt="loading ...">
+    <p>loading</p>
+</div>
+
+<div class="error" ng-if="error" ng-cloak>
+    <h2>An error has occurred</h2>
+    <p>{{error}}</p>
+</div>
+
+<div class="container" ng-class="{embedded: embedded}" ng-show="resources" ng-cloak>
+    <nav>
+        <div class="search">
+            <input type="text"
+                   ng-model="search"
+                   ng-model-options="{debounce: 400}"
+                   ng-click="expandAll = true"
+                   ng-blur="expandAll = false" placeholder="Filter resources"/>
+        </div>
+        <ul class="listing">
+            <li ng-repeat="tag in tags" ng-if="resources[tag.name].length">
+                <a href=""
+                   ng-click="tag.expanded=!tag.expanded"
+                   ng-class="{expanded: search || expandAll ? 'expanded' : tag.expanded}"
+                   ng-hide="resourcesFiltered[tag.name].length < 1">
+                    {{tag.name}}
+                </a>
+                <ul class="resources" ng-if="tag.expanded || search || expandAll">
+                    <li ng-repeat="r in (resourcesFiltered[tag.name]=(resources[tag.name] | filter:filterResourceWithReference))"
+                        ng-class="r.verb | lowercase">
+                        <a href id="{{r.safeId}}" ng-click="selectResource(r)"
+                           ng-class="{selected: selected.resource==r}">
+                            <span class="verb">{{r.verb}}</span><span class="path">{{r.path}}</span>
+                            <span class="summary" ng-bind-html="r.summary">
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <article ng-if="selected.resource">
+
+        <h2 ng-class="selected.resource.verb | lowercase">
+            <span class="verb">{{selected.resource.verb}}</span>
+            <span class="path">{{selected.resource.path}}</span>
+
+            <p class="summary" ng-bind-html="selected.resource.summary"></p>
+        </h2>
+
+        <h3 ng-if="selected.resource.description">
+            <a href="" nyaraka-toggle="sectionHidden.description">Description</a>
+        </h3>
+
+        <div ng-if="!sectionHidden.description && selected.resource.description" class="notes">
+            <p ng-bind-html="selected.resource.description"></p>
+        </div>
+
+        <div ng-repeat="section in resourceExtensions">
+            <h3>
+                <a href="" nyaraka-toggle="sectionHidden[section.name]">{{section.name}}</a>
+            </h3>
+            <div ng-if="!sectionHidden[section.name]">
+                <p>{{section.description}}</p>
+                <ul class="kv">
+                    <li ng-repeat="arg in section.args">
+                        <span class="k">{{arg.label}}</span>
+                        <span class="v">{{arg.value}}</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <h3 ng-if="hasInputs()">
+            <a href="" nyaraka-toggle="sectionHidden.inputs">Inputs</a>
+        </h3>
+        <div ng-if="!sectionHidden.inputs && hasInputs()">
+            <p ng-if="selected.resource.consumes.length">
+                Content types: <span ng-repeat="ct in selected.resource.consumes" class="tag">{{ct}}</span>
+            </p>
+            <table class="inputs">
+                <thead>
+                <tr>
+                    <th>name</th>
+                    <th>type</th>
+                </tr>
+                </thead>
+                <tbody ng-repeat="inputType in inputTypes" ng-if="selected.resource.inputs[inputType.type].length">
+                <tr class="input-group">
+                    <td colspan="2">
+                        {{inputType.label}}
+                    </td>
+                </tr>
+                <tr ng-repeat="input in selected.resource.inputs[inputType.type]">
+                    <td>
+                        {{inputType.type=='body' ? 'body': input.name}}
+
+                        <span ng-if="input.defaultValue" class="tag default">{{input.defaultValue}}</span>
+                        <span class="tag" ng-repeat="constraint in input.constraints">
+                            {{constraint.name}}
+                        </span>
+                    </td>
+                    <td nyaraka-model="input.model" allowed-values="input.allowedValues">
+
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>
+            <a href="" nyaraka-toggle="sectionHidden.responses">Responses</a>
+        </h3>
+        <table class="outputs" ng-if="!sectionHidden.responses">
+            <thead>
+            <tr>
+                <th>code</th>
+                <th>type</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat-start="output in selected.resource.outputs" class="desc"
+                ng-class="{ok: output.status<300, clienterror: output.status<500 && output.status>=400, servererror: output.status>=500}">
+                <td>{{output.status}}</td>
+                <td colspan="2">
+                    <div ng-bind-html="output.description"></div>
+                    <p ng-if="output.contentTypes.length">
+                        <span ng-repeat="ct in output.contentTypes" class="tag">{{ct}}</span>
+                    </p>
+                </td>
+
+            </tr>
+            <tr ng-repeat-end>
+                <td></td>
+                <td>
+                    <div nyaraka-model="output.model"></div>
+
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </article>
+</div>
+
+<script type="text/ng-template" id="model.tpl">
+    <div ng-switch="kindOf(schema)">
+
+        <span ng-switch-when="simple" class="std-type">
+            {{schema.type}}
+
+            <span class="allowed-values tag" ng-repeat="v in allowedValues(schema)">
+                {{v}}
+            </span>
+
+            <span class="tag" ng-repeat="c in schema.constraints">
+                {{c.name}}
+                <span class="arg" ng-repeat="(k, v) in c.args" ng-if="v">{{k}}={{v}}</span>
+            </span>
+        </span>
+
+        <div ng-switch-when="enum">
+            <span ng-if="!allowedValues(schema).length">enum <span
+                    class="std-type enumerated">{{schema.type}}</span></span>
+            <span ng-if="allowedValues(schema).length" class="std-type">{{schema.type}}</span>
+
+            <span class="allowed-values tag" ng-repeat="v in allowedValues(schema)">
+                {{v}}
+            </span>
+
+            <select ng-if="!allowedValues(schema).length">
+                <option ng-repeat="v in schema.enum">{{v}}</option>
+            </select>
+        </div>
+
+        <div ng-switch-when="object">
+            <div ng-if="schema.id">
+                <span class="begin">{{schema.id | objectName}} {</span>
+                <div class="body" ng-repeat="(name, schema) in schema.properties">
+                    <span ng-if="schema.extensions.description" class="desc">{{schema.extensions.description}}</span>
+                    <span class="name">{{name}}</span>
+                    <div ng-include="'model.tpl'" style="display: inline-block;">
+
+                    </div>
+                </div>
+                <span class="end">}</span>
+            </div>
+
+            <div ng-if="schema.$ref">
+                <span class="begin">{{schema.$ref | objectName}}</span>
+            </div>
+
+            <div ng-if="schema.additionalProperties">
+                <span class="begin">Object {</span>
+                <div class="body">
+                    <span class="name">* <span class="hint">(any key)</span></span>
+                    <div style="display: inline-block;">
+                        <span class="std-type">
+                            {{schema.additionalProperties.type}}
+                        </span>
+                    </div>
+                </div>
+                <span class="end">}</span>
+            </div>
+        </div>
+        <div ng-switch-when="array">
+            <span class="begin">Array [</span>
+            <div class="body"
+                 ng-init="schema=schema.items"
+                 ng-include="'model.tpl'">
+
+            </div>
+            <div class="body">
+                <div class="extra">, ...</div>
+            </div>
+            <span class="end">]</span>
+        </div>
+    </div>
+</script>
+
+</body>
+</html>

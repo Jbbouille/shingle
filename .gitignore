@@ -1,0 +1,12 @@
+.idea/
+*.iml
+target/
+testrs/
+
+nyaraka-ui/node_modules/
+nyaraka-ui/.gobble/
+nyaraka-ui/.gobble-build/
+
+nyaraka-ui/dist/
+nyaraka-ui/src/root/docs
+nyaraka-ui/src/root/cust

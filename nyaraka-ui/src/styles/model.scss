@@ -1,0 +1,144 @@
+.model {
+  font-size: 12px;
+  line-height: 16px;
+  position: relative;
+
+  .begin, .end {
+    display: block;
+    font-weight: normal;
+    color: $model-begin-end;
+  }
+
+  .body {
+    padding-left: 20px;
+    vertical-align: top;
+    border-left: 1px solid #B3E5FC;
+  }
+
+  .desc {
+    display: block;
+    color: #999;
+    font-style: italic;
+  }
+
+  .desc:before {
+    content: "// ";
+    color: #666;
+  }
+
+  .name {
+    font-weight: bold;
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  .name:after {
+    content: ":";
+    font-weight: normal;
+    color: #999;
+  }
+
+  .hint {
+    color: #999;
+    font-weight: 100;
+    font-style: italic;
+  }
+
+  .extra {
+    font-weight: normal;
+    color: #999;
+  }
+
+  .std-type {
+    color: #009688;
+    font-weight: normal;
+  }
+
+  .allowed-values {
+    background: #FFE0B2;
+    &:before {
+      content: "=";
+      font-weight: bold;
+      color: #FF9800;
+    }
+  }
+
+  .tag {
+    font-family: sans-serif;
+    color: #666;
+
+    .arg {
+      color: #999;
+      padding: 0 2px;
+
+      &:before {
+        content: "[";
+        color: #673AB7;
+      }
+      &:after {
+        content: "]";
+        color: #673AB7;
+      }
+    }
+  }
+
+  .enumerated {
+    &:before {
+      content: "(";
+      color: #333;
+    }
+    &:after {
+      content: ")";
+      color: #333;
+    }
+  }
+
+  .debug {
+    font-size: 10px;
+    font-family: sans-serif;
+    background: #333;
+    color: #fff;
+  }
+
+  .example-link {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 120px;
+    text-align: center;
+    color: #000;
+    background: #8BC34A;
+    text-decoration: none;
+  }
+
+  &:hover .example-link {
+    display: block;
+  }
+
+  .example {
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 10px;
+
+    pre {
+      margin: 0;
+
+      .key {
+        font-weight:bold;
+      }
+
+      .string {
+        color: #009688;
+      }
+
+      .boolean {
+        color: #3F51B5;
+      }
+
+      .number {
+        color: #0091EA;
+      }
+    }
+  }
+
+}
