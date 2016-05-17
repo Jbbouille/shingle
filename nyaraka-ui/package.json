@@ -11,8 +11,8 @@
     "npm-zepto": "^1.1.7"
   },
   "devDependencies": {
-    "gobble": "^0.10.2",
-    "gobble-browserify": "^0.6.1",
+    "gobble": "^0.11.3",
+    "gobble-browserify": "^13.0.0",
     "gobble-concat": "^0.4.0",
     "gobble-es6-transpiler": "^0.1.2",
     "gobble-sass": "^0.5.0",
