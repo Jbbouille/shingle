@@ -5,7 +5,7 @@ Nyaraka is a library design to build a documentation from annotation, it is simi
 
 ## Nyaraka code organisation
 The nyaraka repository is divided in 4 parts:
-- Core: The entry point of the core of nyaraka is the class `com.libon.nyaraka.jaxrs.DocumentationBuilder`.
+- Core: The entry point of the core of nyaraka is the class `org.nyaraka.jaxrs.DocumentationBuilder`.
 - Nyaraka-maven-plugin: This a plugin that can be use in java projects in order to build documentation with Maven and Nyaraka.
 - test: The test of the library without maven. It contains also Nyaraka utilisation examples and extensions utilisation example.
 - UI: The nyaraka's UI. 
@@ -14,7 +14,7 @@ The nyaraka repository is divided in 4 parts:
 Configuration for server-auth:
 ```xml
 <plugin>
-<groupId>com.libon</groupId>
+<groupId>org</groupId>
 <artifactId>nyaraka-maven-plugin</artifactId>
 <version>1.0-SNAPSHOT</version>
     <executions>
@@ -27,7 +27,7 @@ Configuration for server-auth:
             <configuration>
                 <nyarakaFilePath>~/server-auth/api/target/auth.json</nyarakaFilePath>
                 <packagesToScan>
-                    <packageToScan>com.libon.server.auth.api.resource.oauth</packageToScan>
+                    <packageToScan>org.server.auth.api.resource.oauth</packageToScan>
                 </packagesToScan>
             </configuration>
         </execution>
@@ -41,7 +41,7 @@ Configuration for server-auth:
                 <nyarakaFilePath>~/server-auth/api/target/auth-admin.json</nyarakaFilePath>
                 <basePath>/admin</basePath>
                 <packagesToScan>
-                    <packageToScan>com.libon.server.auth.api.resource.admin</packageToScan>
+                    <packageToScan>org.server.auth.api.resource.admin</packageToScan>
                 </packagesToScan>
                 <prettyPlease>true</prettyPlease>
             </configuration>
@@ -75,7 +75,7 @@ try {
 ## Extensions
 
 ### Info
-Extension `com.libon.nyaraka.Extension` is an interface tha you may use when you want to extend the behavior of nyaraka. The interface has 3 default method for 3 different cases:
+Extension `org.nyaraka.Extension` is an interface tha you may use when you want to extend the behavior of nyaraka. The interface has 3 default method for 3 different cases:
 - `accept(Class clazz)` To filter the resource classes.
 - `accept(Method method)` To filter the resource methods.
 - `enrich(BeanProperty beanProperty, Model.IModel model)` If you want to improve documentation on the model.
@@ -89,4 +89,4 @@ There is 3 existing extensions:
 - SwaggerExtension
 
 ### Creation
-You may want to create an extension for doing that just implement the `com.libon.nyaraka.Extension` interface and enrich the ResourceBuilder with the information you need. 
+You may want to create an extension for doing that just implement the `org.nyaraka.Extension` interface and enrich the ResourceBuilder with the information you need. 
