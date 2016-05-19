@@ -5,4 +5,4 @@ dist:
 	gobble build dist/
 
 docker: dist
-	docker build --no-cache -t registry.build.libon.com/libon/nyaraka-ui .
+	docker build --no-cache -t nyaraka-ui .
