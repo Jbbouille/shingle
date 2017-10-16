@@ -11,7 +11,7 @@ The nyaraka repository is divided in 4 parts:
 - UI: The nyaraka's UI. 
 
 ## How to use nyaraka-maven-plugin
-In order to use it insert this bellow in your pom.xml:
+In order to use it insert this below in your pom.xml:
 ```xml
 <plugin>
 <groupId>org.nyaraka</groupId>
@@ -25,7 +25,7 @@ In order to use it insert this bellow in your pom.xml:
         </goals>
         <phase>compile</phase>
         <configuration>
-            <nyarakaFilePath>/path/to/future/nyaraka/file.json</nyarakaFilePath>
+            <outputPath>/path/to/future/nyaraka/file.json</outputPath>
             <packagesToScan>
                 <packageToScan>org.example.rest.api</packageToScan>
             </packagesToScan>
@@ -39,9 +39,9 @@ In order to use it insert this bellow in your pom.xml:
 </plugin>
 ```
 Available configuration options:
-* `nyarakaFilePath`. Required: **true**. The path where the generated documentation file will go.
+* `outputPath`. Required: **true**. The path where the generated documentation file will go.
 * `packagesToScan`. Required: **true**. The package where Nyaraka will find JAXRS information to scan.
-* `basePath`. Required: **false**. Path of the API that don't change.
+* `apiBasePath`. Required: **false**. Path of the API that don't change.
 * `extensions`. Required: **false**. The reference of the personal Nyaraka extensions.
 * `prettyPlease`. Required: **false**. Toggle it with *true* or *false* to indent the json output.
 
