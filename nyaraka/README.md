@@ -46,7 +46,7 @@ Available configuration options:
 * `prettyPlease`. Required: **false**. Toggle it with *true* or *false* to indent the json output.
 
 ## How to use it as a library
-You can take example as bellow or in the [code](https://github.com/jawher/nyaraka/blob/master/nyaraka/nyaraka-maven-plugin/src/main/java/org/nyaraka/mojo/TheMojo.java#L108-L131).
+You can take example as below or in the [code](https://github.com/jawher/nyaraka/blob/master/nyaraka/nyaraka-maven-plugin/src/main/java/org/nyaraka/mojo/TheMojo.java#L108-L131).
 ```java
 Nyaraka nyaraka = Nyaraka.builder() // Nyaraka is the 'context' Object that contains the configuration info for the generated documentation.
                          .extensions(asList(new JavaxValidationExtension(),
