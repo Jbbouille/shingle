@@ -9,10 +9,12 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import org.junit.Test;
-import org.nyaraka.jaxrs.DocumentationBuilder;
-import org.nyaraka.model.Response;
 import org.nyaraka.Nyaraka;
+import org.nyaraka.jaxrs.DocumentationBuilder;
 import org.nyaraka.model.Documentation;
+import org.nyaraka.model.Parameter;
+import org.nyaraka.model.Response;
+import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 
@@ -86,12 +88,14 @@ public class SwaggerExtensionTest {
         @ApiResponses({
                 @ApiResponse(code = 400, message = "e1")
         })
-        class E1 extends Exception {}
+        class E1 extends Exception {
+        }
 
         @ApiResponses({
                 @ApiResponse(code = 400, message = "e2")
         })
-        class E2 extends Exception {}
+        class E2 extends Exception {
+        }
 
         // Given
         @Path("/")
@@ -127,7 +131,8 @@ public class SwaggerExtensionTest {
         @ApiResponses({
                 @ApiResponse(code = 400, message = "e")
         })
-        class E extends Exception {}
+        class E extends Exception {
+        }
 
 
         // Given
@@ -191,5 +196,34 @@ public class SwaggerExtensionTest {
         // Then
         assertThat(responses).extracting(r -> r.status).containsOnly(200, 400, 400);
         assertThat(responses).extracting(r -> r.description).containsOnly("Orange is the new Black", "m1", "m2");
+    }
+
+    @Test
+    public void should_add_api_param() throws Exception {
+        // Given
+        @Path("/")
+        class Aaa {
+            @GET
+            @Path("Aaa/{path}")
+            @Produces("application/json")
+            public javax.ws.rs.core.Response aaaMethod(@ApiParam(value = "This is the default path") String body, @PathParam("path") String path) {
+                return javax.ws.rs.core.Response.ok().build();
+            }
+        }
+
+        List<Class<?>> classes = singletonList(Aaa.class);
+
+        Nyaraka nyaraka = Nyaraka.builder().extension(new SwaggerExtension()).build();
+        DocumentationBuilder documentationBuilder = new DocumentationBuilder(nyaraka, "1.0");
+
+        // When
+        Documentation documentation = documentationBuilder.execute(classes);
+        List<Parameter> parameters = documentation.getResources()
+                                                  .stream()
+                                                  .flatMap(r -> r.inputs.stream())
+                                                  .collect(Collectors.toList());
+
+        // Then
+        assertThat(parameters).extracting(p -> p.description).contains("This is the default path");
     }
 }

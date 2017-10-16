@@ -48,10 +48,10 @@ public class TheMojo extends AbstractMojo {
     private MavenProject project;
 
     @Parameter(required = true)
-    private String nyarakaFilePath;
+    private String outputPath;
 
     @Parameter
-    private String basePath;
+    private String apiBasePath;
 
     @Parameter
     private Set<String> extensions;
@@ -111,7 +111,7 @@ public class TheMojo extends AbstractMojo {
                                                     new SwaggerExtension(),
                                                     new NyarakaExtension()))
                                  .extensions(extensions(classLoader))
-                                 .basePath(basePath)
+                                 .basePath(apiBasePath)
                                  .build();
 
         Documentation documentation = new DocumentationBuilder(nyaraka, majorVersion()).execute(classes);
@@ -125,7 +125,7 @@ public class TheMojo extends AbstractMojo {
         objectMapper.setSerializationInclusion(JsonInclude.Include.NON_EMPTY);
 
         try {
-            objectMapper.writeValue(new File(nyarakaFilePath), documentation);
+            objectMapper.writeValue(new File(outputPath), documentation);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
