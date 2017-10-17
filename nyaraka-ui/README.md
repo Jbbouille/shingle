@@ -20,12 +20,12 @@ You are able to customize the nyaraka.json file with a custo.json file. Example:
 {
   "resourceExtensions": [
     {
-      "extensionName": "Legacy"
-      "name": "Legacy API",
+      "extensionName": "Legacy",
+      "name": "Legacy API"
     },
     {
-      "extensionName": "Deprecated"
-      "name": "Legacy API",
+      "extensionName": "Deprecated",
+      "name": "Legacy API"
     }
   ]
 }
