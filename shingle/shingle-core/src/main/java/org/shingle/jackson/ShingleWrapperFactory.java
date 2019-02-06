@@ -6,19 +6,19 @@ import com.fasterxml.jackson.module.jsonSchema.factories.VisitorContext;
 import com.fasterxml.jackson.module.jsonSchema.factories.WrapperFactory;
 import org.shingle.Shingle;
 
-public class NyarakaWrapperFactory extends WrapperFactory {
+public class ShingleWrapperFactory extends WrapperFactory {
     private final Shingle shingle;
 
-    public NyarakaWrapperFactory(Shingle shingle) {
+    public ShingleWrapperFactory(Shingle shingle) {
         this.shingle = shingle;
     }
 
     public SchemaFactoryWrapper getWrapper(SerializerProvider provider) {
-        return new NyarakaSchemaFactoryWrapper(shingle, provider);
+        return new ShingleSchemaFactoryWrapper(shingle, provider);
     }
 
     public SchemaFactoryWrapper getWrapper(SerializerProvider provider, VisitorContext rvc) {
-        NyarakaSchemaFactoryWrapper wrapper = new NyarakaSchemaFactoryWrapper(shingle, provider);
+        ShingleSchemaFactoryWrapper wrapper = new ShingleSchemaFactoryWrapper(shingle, provider);
         wrapper.setVisitorContext(rvc);
         return wrapper;
     }

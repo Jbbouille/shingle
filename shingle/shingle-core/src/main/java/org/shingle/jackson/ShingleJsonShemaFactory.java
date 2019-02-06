@@ -10,11 +10,11 @@ import com.fasterxml.jackson.module.jsonSchema.types.NumberSchema;
 import com.fasterxml.jackson.module.jsonSchema.types.ObjectSchema;
 import com.fasterxml.jackson.module.jsonSchema.types.StringSchema;
 
-public class NyarakaJsonShemaFactory extends JsonSchemaFactory {
+public class ShingleJsonShemaFactory extends JsonSchemaFactory {
 
     private final Shingle shingle;
 
-    public NyarakaJsonShemaFactory(Shingle shingle) {
+    public ShingleJsonShemaFactory(Shingle shingle) {
         this.shingle = shingle;
     }
 

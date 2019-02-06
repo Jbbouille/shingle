@@ -24,7 +24,7 @@ import com.fasterxml.jackson.module.jsonSchema.types.NumberSchema;
 import com.fasterxml.jackson.module.jsonSchema.types.ObjectSchema;
 import com.fasterxml.jackson.module.jsonSchema.types.StringSchema;
 import org.shingle.Shingle;
-import org.shingle.jackson.NyarakaSchemaFactoryWrapper;
+import org.shingle.jackson.ShingleSchemaFactoryWrapper;
 
 public class Model {
 
@@ -63,7 +63,7 @@ public class Model {
     }
 
     private static Model create(JavaType type, Shingle shingle, ObjectMapper m) {
-        NyarakaSchemaFactoryWrapper visitor = new NyarakaSchemaFactoryWrapper(shingle);
+        ShingleSchemaFactoryWrapper visitor = new ShingleSchemaFactoryWrapper(shingle);
         try {
             m.acceptJsonFormatVisitor(type, visitor);
         } catch (JsonMappingException e) {
