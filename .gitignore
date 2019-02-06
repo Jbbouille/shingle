@@ -3,10 +3,10 @@
 target/
 testrs/
 
-nyaraka-ui/node_modules/
-nyaraka-ui/.gobble/
-nyaraka-ui/.gobble-build/
+shingle-ui/node_modules/
+shingle-ui/.gobble/
+shingle-ui/.gobble-build/
 
-nyaraka-ui/dist/
-nyaraka-ui/src/root/docs
-nyaraka-ui/src/root/cust
+shingle-ui/dist/
+shingle-ui/src/root/docs
+shingle-ui/src/root/cust
