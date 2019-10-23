@@ -6,24 +6,20 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "angular": "^1.4.8",
-    "lodash": "^4.3.0",
-    "npm-zepto": "^1.1.7"
+    "angular": "1.4.8",
+    "jquery": "3.4.1",
+    "lodash": "4.3.0"
   },
   "devDependencies": {
-    "gobble": "^0.11.3",
-    "gobble-browserify": "^13.0.0",
-    "gobble-concat": "^0.4.0",
-    "gobble-es6-transpiler": "^0.1.2",
-    "gobble-sass": "^0.5.0",
-    "gobble-uglifyjs": "^0.2.1",
-    "ng-annotate": "^1.2.1",
+    "ng-annotate-patched": "^1.11.1",
+    "parcel-bundler": "^1.12.4",
+    "sass": "^1.23.0",
     "source-map-support": "^0.4.0"
   },
   "scripts": {
     "purge": "rm -rf node_modules",
     "clean": "rm -rf dist",
-    "install-deps": "npm install",
-    "build": "npm run clean && gobble build dist/"
+    "dev": "parcel dev src/root/index.html",
+    "build": "parcel build src/root/index.html"
   }
 }

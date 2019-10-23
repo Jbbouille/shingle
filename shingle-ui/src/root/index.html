@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <title>Shingle UI</title>
 
-    <link rel="stylesheet" href="shingle.css">
+    <link rel="stylesheet" href="../styles/shingle.scss">
 
-    <script type="text/javascript" src="shingle.js"></script>
+    <script src="../js/shingle.js"></script>
 </head>
 
 <body ng-app="shingle" ng-controller="ShingleController">
 
 <div class="loader" ng-if="busy">
-    <img src="images/ripple.gif" alt="loading ...">
+    <img src="../styles/images/ripple.gif" alt="loading ...">
     <p>loading</p>
 </div>
 
@@ -88,6 +88,7 @@
         <h3 ng-if="hasInputs()">
             <a href="" shingle-toggle="sectionHidden.inputs">Inputs</a>
         </h3>
+
         <div ng-if="!sectionHidden.inputs && hasInputs()">
             <p ng-if="selected.resource.consumes.length">
                 Content types: <span ng-repeat="ct in selected.resource.consumes" class="tag">{{ct}}</span>
@@ -114,9 +115,7 @@
                             {{constraint.name}}
                         </span>
                     </td>
-                    <td shingle-model="input.model" allowed-values="input.allowedValues">
-
-                    </td>
+                    <td shingle-model="input.model" allowed-values="input.allowedValues"></td>
                 </tr>
                 </tbody>
             </table>
@@ -125,6 +124,7 @@
         <h3>
             <a href="" shingle-toggle="sectionHidden.responses">Responses</a>
         </h3>
+
         <table class="outputs" ng-if="!sectionHidden.responses">
             <thead>
             <tr>
@@ -148,7 +148,6 @@
                 <td></td>
                 <td>
                     <div shingle-model="output.model"></div>
-
                 </td>
             </tr>
             </tbody>

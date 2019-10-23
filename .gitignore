@@ -10,3 +10,4 @@ shingle-ui/.gobble-build/
 shingle-ui/dist/
 shingle-ui/src/root/docs
 shingle-ui/src/root/cust
+.cache

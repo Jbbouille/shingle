@@ -45,7 +45,7 @@ Available configuration options:
 * `prettyPlease`. Required: **false**. Toggle it with *true* or *false* to indent the json output.
 
 ## How to use it as a library
-You can take example as below or in the [code](https://github.com/jawher/shingle/blob/master/shingle/shingle-maven-plugin/src/main/java/org/shingle/mojo/TheMojo.java#L108-L131).
+You can take example as below or in the [code](https://github.com/jbbouille/shingle/blob/master/shingle/shingle-maven-plugin/src/main/java/org/shingle/mojo/TheMojo.java#L108-L131).
 ```java
 Shingle shingle = Shingle.builder() // Shingle is the 'context' Object that contains the configuration info for the generated documentation.
                          .extensions(asList(new JavaxValidationExtension(),
@@ -98,17 +98,17 @@ public class MyExtension implements Extension {
     }
 }
 ```
-- JavaxValidationExtension. Used for `javax.validation`. See [code](https://github.com/jawher/shingle/blob/master/shingle/shingle-core/src/main/java/org/shingle/extensions/JavaxValidationExtension.java).
+- JavaxValidationExtension. Used for `javax.validation`. See [code](https://github.com/jbbouille/shingle/blob/master/shingle/shingle-core/src/main/java/org/shingle/extensions/JavaxValidationExtension.java).
 - SwaggerExtension. Used for handle [Swagger annotations](https://github.com/swagger-api/swagger-core/wiki/Annotations-1.5.X).
-- ShingleExtension. Used for handle [Shingle annotations](https://github.com/jawher/shingle/tree/master/shingle/shingle-annotations/src/main/java/org/shingle/annotations).
-- XmlJavaTypeAdapterExtension. Used for generating examples. See [code](https://github.com/jawher/shingle/blob/master/shingle/shingle-core/src/main/java/org/shingle/extensions/XmlJavaTypeAdapterExtension.java).
+- ShingleExtension. Used for handle [Shingle annotations](https://github.com/jbbouille/shingle/tree/master/shingle/shingle-annotations/src/main/java/org/shingle/annotations).
+- XmlJavaTypeAdapterExtension. Used for generating examples. See [code](https://github.com/jbbouille/shingle/blob/master/shingle/shingle-core/src/main/java/org/shingle/extensions/XmlJavaTypeAdapterExtension.java).
 
 ### Extension creation
 You may want to create an extension for doing that just implement the `org.shingle.Extension` interface and enrich the ResourceBuilder with the information you need.
 
 With the extension you can:
-- Filter some class resource that Shingle will not scan. See [example](https://github.com/jawher/shingle/blob/master/shingle/shingle-core/src/test/java/org/shingle/jaxrs/DocumentationBuilderTest.java#L59-L94).
-- Filter some method resource that Shingle will not scan. See [example](https://github.com/jawher/shingle/blob/master/shingle/shingle-core/src/test/java/org/shingle/jaxrs/DocumentationBuilderTest.java#L98-L133).
-- Customize your documentation at the method level. See [example](https://github.com/jawher/shingle/blob/master/shingle/shingle-core/src/test/java/org/shingle/jaxrs/DocumentationBuilderTest.java#L798-L823).
-- Customize your documentation at parameter level. See [example](https://github.com/jawher/shingle/blob/master/shingle/shingle-core/src/test/java/org/shingle/extensions/SwaggerExtensionTest.java#L202-L228).
-- Improve documentation on the model. See [example](https://github.com/jawher/shingle/blob/master/shingle/shingle-core/src/main/java/org/shingle/extensions/JavaxValidationExtension.java#L28).
+- Filter some class resource that Shingle will not scan. See [example](https://github.com/jbbouille/shingle/blob/master/shingle/shingle-core/src/test/java/org/shingle/jaxrs/DocumentationBuilderTest.java#L59-L94).
+- Filter some method resource that Shingle will not scan. See [example](https://github.com/jbbouille/shingle/blob/master/shingle/shingle-core/src/test/java/org/shingle/jaxrs/DocumentationBuilderTest.java#L98-L133).
+- Customize your documentation at the method level. See [example](https://github.com/jbbouille/shingle/blob/master/shingle/shingle-core/src/test/java/org/shingle/jaxrs/DocumentationBuilderTest.java#L798-L823).
+- Customize your documentation at parameter level. See [example](https://github.com/jbbouille/shingle/blob/master/shingle/shingle-core/src/test/java/org/shingle/extensions/SwaggerExtensionTest.java#L202-L228).
+- Improve documentation on the model. See [example](https://github.com/jbbouille/shingle/blob/master/shingle/shingle-core/src/main/java/org/shingle/extensions/JavaxValidationExtension.java#L28).

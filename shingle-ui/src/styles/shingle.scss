@@ -1,7 +1,7 @@
 @import "colors";
 @import "model";
 
-$listing-width: 500px;
+$listing-width: 580px;
 
 body, html {
   width: 100%;
@@ -56,8 +56,8 @@ body, html {
 }
 
 .container {
-  max-width: 1400px;
   margin: 0 auto;
+  margin-left: 30px;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -138,7 +138,7 @@ nav {
 
           .path {
             color: #333;
-            padding-left: 5px;
+            padding-left: 30px;
           }
 
           .summary {
@@ -208,6 +208,7 @@ article {
   bottom: 0;
   overflow: auto;
   font-size: 14px;
+  max-width: 900px;
 
   h2 {
     padding: 0;
