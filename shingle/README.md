@@ -5,7 +5,7 @@ Shingle is a library design to build a documentation from annotation, it is simi
 
 ## Shingle code organisation
 The shingle repository is divided in 4 parts:
-- Core: The entry point of the core of shingle is the class `org.shingle.jaxrs.DocumentationBuilder`.
+- Core: The entry point of the core of shingle is the class `fr.shingle.jaxrs.DocumentationBuilder`.
 - Shingle-maven-plugin: This a plugin that can be use in java projects in order to build documentation with Maven and Shingle.
 - Shingle-UI: The UI.
 
@@ -13,7 +13,7 @@ The shingle repository is divided in 4 parts:
 In order to use it insert this below in your pom.xml:
 ```xml
 <plugin>
-<groupId>org.shingle</groupId>
+<groupId>fr.shingle</groupId>
 <artifactId>shingle-maven-plugin</artifactId>
 <version>${shingle.version}</version>
 <executions>
@@ -70,7 +70,7 @@ try {
 ## Extensions
 
 ### Info
-Extension `org.shingle.Extension` is an interface that you may use if you want to extend the behavior of Shingle. The interface has 5 default methods for 5 different uses cases:
+Extension `fr.shingle.Extension` is an interface that you may use if you want to extend the behavior of Shingle. The interface has 5 default methods for 5 different uses cases:
 - `accept(Class clazz)`. To filter the resource classes.
 - `accept(Method method)`. To filter the resource methods.
 - `enrich(BeanProperty beanProperty, Model.IModel model)`. If you want to improve documentation on the model.
@@ -104,7 +104,7 @@ public class MyExtension implements Extension {
 - XmlJavaTypeAdapterExtension. Used for generating examples. See [code](https://github.com/jbbouille/shingle/blob/master/shingle/shingle-core/src/main/java/org/shingle/extensions/XmlJavaTypeAdapterExtension.java).
 
 ### Extension creation
-You may want to create an extension for doing that just implement the `org.shingle.Extension` interface and enrich the ResourceBuilder with the information you need.
+You may want to create an extension for doing that just implement the `fr.shingle.Extension` interface and enrich the ResourceBuilder with the information you need.
 
 With the extension you can:
 - Filter some class resource that Shingle will not scan. See [example](https://github.com/jbbouille/shingle/blob/master/shingle/shingle-core/src/test/java/org/shingle/jaxrs/DocumentationBuilderTest.java#L59-L94).
