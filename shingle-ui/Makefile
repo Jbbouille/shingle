@@ -2,7 +2,7 @@
 
 dist:
 	-rm -rf dist/
-	gobble build dist/
+	npm run build
 
 docker: dist
 	docker build --no-cache -t shingle-ui .
