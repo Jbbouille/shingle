@@ -63,7 +63,7 @@ angular.module('shingle').controller('ShingleController', ["$scope", "$http", "$
     var vars = query.split('&');
     for (var i = 0; i < vars.length; i++) {
       var pair = vars[i].split('=');
-      if (decodeURIComponent(pair[0]) == variable) {
+      if (decodeURIComponent(pair[0]) === variable) {
         return decodeURIComponent(pair[1]);
       }
     }
@@ -113,7 +113,7 @@ angular.module('shingle').controller('ShingleController', ["$scope", "$http", "$
       if (r.id) {
         resourceId += '_' + r.id;
       }
-      r.safeId = resourceId.replace(/[\/\{}]/g, '_');
+      r.safeId = resourceId.replace(/[\/{}]/g, '_');
       if (resourceId === requestedResourceId && !$scope.selected.resource) {
         $scope.selectResource(r);
         expandedTag = thisTags[0];
@@ -249,7 +249,7 @@ angular.module('shingle').directive('shingleModel', ["$sce", function ($sce) {
         if (schema.enum) {
           return 'enum'
         }
-        if (schema.type == 'object' || schema.type === 'array') {
+        if (schema.type === 'object' || schema.type === 'array') {
           return schema.type;
         }
         return 'simple';
