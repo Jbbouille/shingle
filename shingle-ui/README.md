@@ -4,7 +4,7 @@
 This is the UI part of the project.
 
 ## How to use it
-Build it or download it. Put it in an http server like Nginx with the shingle.json file. Go to your url. Example go to `http://localhost:4567/?doc=docs/shingle.json&cust=cust/custoShingle.json`.
+Build it or download it. Put it in an http server like Nginx with the shingle.json file. Go to your url. Example go to `http://localhost:1234/?doc=docs/shingle.json&cust=cust/custoShingle.json`.
 Find a example of [working shingle](http://shingle.github.io).
 
 ## Functionalities
@@ -33,27 +33,18 @@ You are able to customize the shingle.json file with a custo.json file. Example:
 
 ## Test locally
 ### Installation
-
-You'll need to globally install `gobble-cli`:
-
+You must use yarn, go in the `shingle-ui` directory:
 ```
-npm install -g gobble-cli
+yarn install
 ```
-
-And then, in the shingle-ui directory:
-
-```
-npm install
-```
-
 ### Running
 
 In the shingle-ui directory, run:
 
 ```
-gobble
+yarn dev
 ```
 
-Which will start a server on http://localhost:4567.
+Which will start a server on http://localhost:1234.
 
-.
+in order to load a API resource, add your file in the dist directory then go to: `http://localhost:1234/?doc=/shingle.json`
