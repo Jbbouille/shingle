@@ -1,7 +1,9 @@
 # Shingle
 
 ## Introduction 
-Shingle is a library design to build a documentation from annotation, it is similar to [Swagger](http://swagger.io/) (more lightweight). It can interact with some of the swagger Annotation. It is fast, clean and extensible (as usual with new libraries). 
+Shingle is a library design to build a documentation from annotation, it is similar to [Swagger](https://swagger.io/) (more lightweight). It can interact with some of the swagger Annotation. It is fast, clean and extensible (as usual with new libraries). 
+
+This product was initially designed [@Libon](https://www.libon.com/).
 
 ## Shingle code organisation
 The shingle repository is divided in 4 parts:
@@ -11,4 +13,7 @@ The shingle repository is divided in 4 parts:
 - Shingle annotations which contains java annotations that you can add tou your project.
 
 ## Contributors
-
+Main contributors are:
+- obourgain
+- jmoussa
+- jbpetit

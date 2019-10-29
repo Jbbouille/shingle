@@ -1,9 +1,9 @@
 {
   "name": "shingle-ui",
-  "version": "1.0.0",
+  "version": "1.4.0",
   "description": "Shingle's UI",
-  "main": "index.js",
-  "author": "",
+  "main": "src/js/shingle.js",
+  "author": "jmoussa",
   "license": "MIT",
   "dependencies": {
     "angular": "1.4.8",
