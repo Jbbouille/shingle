@@ -2,3 +2,11 @@ steps:
   - name: 'maven:3-jdk-8'
     args: ['mvn', 'clean', 'install']
     dir: 'shingle'
+  - name: 'node:10.15.1'
+    entrypoint: 'yarn'
+    args: ['install']
+    dir: 'shingle-ui'
+  - name: 'node:10.15.1'
+    entrypoint: 'yarn'
+    args: ['run', 'build']
+    dir: 'shingle-ui'
