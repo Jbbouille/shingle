@@ -74,8 +74,9 @@ angular.module('shingle').controller('ShingleController', ["$scope", "$http", "$
     return;
   }
   $scope.busy = true;
-  $http.get(doc).success(function (doc) {
-    var rawResources = doc.resources;
+  $http.get(doc).then(function ({data}) {
+
+    var rawResources = data.resources;
 
     var tags = _(rawResources).map('tags').flatten().uniq().filter(_.identity).sort().push('others').value();
     var resources = {};
@@ -149,7 +150,7 @@ angular.module('shingle').controller('ShingleController', ["$scope", "$http", "$
     });
 
     $scope.busy = false;
-  }).error(function (err) {
+  }, function (err) {
     $scope.busy = false;
     $scope.error = err;
   });
