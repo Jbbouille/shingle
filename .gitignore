@@ -2,12 +2,6 @@
 *.iml
 target/
 testrs/
-
-shingle-ui/node_modules/
-shingle-ui/.gobble/
-shingle-ui/.gobble-build/
-
-shingle-ui/dist/
-shingle-ui/src/root/docs
-shingle-ui/src/root/cust
+node_modules/
+dist/
 .cache
