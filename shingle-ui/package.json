@@ -6,7 +6,7 @@
   "author": "jmoussa",
   "license": "MIT",
   "dependencies": {
-    "angular": "1.7.9",
+    "angular": "1.8.0",
     "jquery": "3.4.1",
     "lodash": "4.3.0"
   },
