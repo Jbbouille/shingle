@@ -8,7 +8,7 @@
   "dependencies": {
     "angular": "1.7.9",
     "jquery": "3.4.1",
-    "lodash": "4.3.0"
+    "lodash": "4.17.19"
   },
   "devDependencies": {
     "ng-annotate-patched": "^1.11.1",
